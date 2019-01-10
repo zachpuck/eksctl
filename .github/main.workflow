@@ -1,9 +1,9 @@
-workflow "Build" {
+workflow "Build every commit" {
   on = "push"
-  resolves = ["pull build image"]
+  resolves = ["Run: make build"]
 }
 
-action "pull build image" {
-  uses = "actions/docker/cli@76ff57a6c3d817840574a98950b0c7bc4e8a13a8"
-  runs = "pull weaveworks/eksctl:build"
+action "Run: make build" {
+  uses = "./build/"
+  runs = "make build"
 }
